@@ -1,0 +1,127 @@
+{
+  "id": "caso-001",
+  "titulo": "O vazamento da Aurora Labs",
+  "suspeitos": [
+    { "id": "ana",   "nome": "Ana Ribeiro",  "cargo": "Dev Sênior",         "inicial": "A" },
+    { "id": "bruno", "nome": "Bruno Costa",  "cargo": "Estagiário",         "inicial": "B" },
+    { "id": "carla", "nome": "Carla Mendes", "cargo": "Gerente de Produto", "inicial": "C" }
+  ],
+  "evidencias": [
+    {
+      "id": "log-auth-01", "tipo": "log", "icon": "🔑",
+      "nome": "auth.log", "resumo": "Autenticação — srv-aurora-01",
+      "conteudo": "2026-10-03T02:12:45Z  login   FAILED   user=ana@aurora.lab  ip=10.42.7.88\n2026-10-03T02:13:58Z  vpn     OPEN     user=ana@aurora.lab  ip=10.42.7.88\n2026-10-03T02:14:07Z  login   SUCCESS  user=ana@aurora.lab  ip=10.42.7.88  tty=pts/2\n2026-10-03T02:47:31Z  logout           user=ana@aurora.lab  ip=10.42.7.88",
+      "metadados": {
+        "Servidor": "srv-aurora-01",
+        "Fuso horário do log": "UTC",
+        "Coletado em": "2026-10-03T08:00:00Z",
+        "Coletado por": "SOC / SIEM"
+      }
+    },
+    {
+      "id": "log-vpn-04", "tipo": "log", "icon": "🌐",
+      "nome": "vpn-session.log", "resumo": "Sessão VPN — usuário ana",
+      "conteudo": "2026-10-03T02:13:58Z  session OPEN   user=ana  src=10.42.7.88  dst=vpn.aurora.lab:443\n2026-10-03T02:47:11Z  session CLOSE  user=ana  bytes_in=2847231  bytes_out=892341",
+      "metadados": {
+        "Servidor": "vpn.aurora.lab",
+        "Fuso horário do log": "UTC",
+        "Duração": "33m13s"
+      }
+    },
+    {
+      "id": "file-usb-03", "tipo": "log", "icon": "💾",
+      "nome": "usb-events.log", "resumo": "Eventos de armazenamento USB",
+      "conteudo": "2026-10-03T02:15:32Z  MOUNT    /dev/sdb1 -> /media/ana/KINGSTON\n2026-10-03T02:46:58Z  WRITE    blueprint_v3.pdf  size=4.2MB\n2026-10-03T02:47:09Z  UNMOUNT  /dev/sdb1",
+      "metadados": {
+        "Dispositivo": "KINGSTON-8GB",
+        "Fuso horário do log": "UTC",
+        "Volume": "/media/ana/KINGSTON"
+      }
+    },
+    {
+      "id": "hash-export-06", "tipo": "log", "icon": "📤",
+      "nome": "export.log", "resumo": "Exportação do blueprint_v3",
+      "conteudo": "2026-10-03T02:47:11Z  EXPORT  blueprint_v3.pdf\n  path=/srv/dados/blueprint_v3.pdf\n  SHA256=a3f9c1e2b4d5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1\n  size=4.2MB\n  user=ana",
+      "metadados": {
+        "Arquivo": "blueprint_v3.pdf",
+        "SHA-256": "a3f9c1e2b4d5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1",
+        "Usuário": "ana",
+        "Fuso": "UTC"
+      }
+    },
+    {
+      "id": "email-02", "tipo": "email", "icon": "📧",
+      "nome": "email_ana_2350.eml", "resumo": "Ana → Carla: 'Boa noite!'",
+      "conteudo": "De:     ana.ribeiro@aurora.lab\nPara:   carla.mendes@aurora.lab\nData:   02/10/2026 23:50:00 -03:00\nAssunto: Boa noite!\n\nCarla,\n\nVou dormir agora — amanhã cedo reviso o blueprint com calma.\nBeijos,\nAna",
+      "metadados": {
+        "De": "ana.ribeiro@aurora.lab",
+        "Para": "carla.mendes@aurora.lab",
+        "Data (com offset)": "2026-10-02T23:50:00-03:00",
+        "Fuso": "-03:00 (horário de Brasília)",
+        "Cliente": "Thunderbird 115"
+      }
+    },
+    {
+      "id": "forum-post-05", "tipo": "file", "icon": "🕵️",
+      "nome": "forum_post.html", "resumo": "Post capturado no fórum 'vazamentos_br'",
+      "conteudo": "[POST CAPTURADO — 2026-10-03T03:15:00Z]\nFórum: vazamentos_br / tópico \"Aurora Labs blueprint\"\nAutor: ghost_0x1a\n\n\"Novo blueprint da Aurora Labs vazou.\nSHA256: a3f9c1e2b4d5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1\nPreço: R$ 8.000 (BTC)\nChama no PV.\"",
+      "metadados": {
+        "Fórum": "vazamentos_br",
+        "Autor": "ghost_0x1a",
+        "Timestamp (UTC)": "2026-10-03T03:15:00Z",
+        "Hash citado": "a3f9c1e2...e9f0a1"
+      }
+    },
+    {
+      "id": "access-control-11", "tipo": "log", "icon": "🔒",
+      "nome": "access-control.yaml", "resumo": "Permissões do blueprint_v3",
+      "conteudo": "blueprint_v3:\n  path: /srv/dados/blueprint_v3.pdf\n  permissoes:\n    - ana.ribeiro@aurora.lab    (owner)\n    - carla.mendes@aurora.lab   (read)\n  ultima_modificacao: 2026-09-28T14:22:00Z\n  criado_por: sistema",
+      "metadados": {
+        "Usuários com acesso": "ana, carla",
+        "Owner": "ana.ribeiro@aurora.lab"
+      }
+    },
+    {
+      "id": "log-badge-09", "tipo": "log", "icon": "🚪",
+      "nome": "catraca.log", "resumo": "Entradas e saídas — prédio Aurora",
+      "conteudo": "2026-10-02T08:12:00-03:00  ENTRADA  carla.mendes\n2026-10-02T18:30:14-03:00  SAIDA    carla.mendes\n2026-10-02T09:04:00-03:00  ENTRADA  ana.ribeiro\n2026-10-02T19:47:33-03:00  SAIDA    ana.ribeiro",
+      "metadados": {
+        "Fuso": "-03:00 (horário local)",
+        "Local": "Prédio Aurora — catraca principal"
+      }
+    },
+    {
+      "id": "email-07", "tipo": "email", "icon": "📧",
+      "nome": "email_carla_2100.eml", "resumo": "Carla → equipe: aviso de confidencialidade",
+      "conteudo": "De:     carla.mendes@aurora.lab\nPara:   equipe-produto@aurora.lab\nData:   02/10/2026 21:00:00 -03:00\nAssunto: Lembrete — blueprint_v3 é confidencial\n\nPessoal,\n\nO blueprint_v3 ainda é confidencial. Não compartilhem externamente\naté o lançamento oficial. Qualquer dúvida me chamem.\n\nAbs,\nCarla",
+      "metadados": {
+        "De": "carla.mendes@aurora.lab",
+        "Data": "2026-10-02T21:00:00-03:00"
+      }
+    },
+    {
+      "id": "chat-10", "tipo": "chat", "icon": "💬",
+      "nome": "slack_export.txt", "resumo": "Conversa privada — Ana",
+      "conteudo": "[02/10/2026 22:35] ana:          cara, tô devendo o banco já faz 2 meses\n[02/10/2026 22:36] amiga_sofia:  eita, precisa de ajuda?\n[02/10/2026 22:37] ana:          se eu não pagar até dia 10 vou pro serasa\n[02/10/2026 22:38] ana:          mas vai dar certo, tô resolvendo",
+      "metadados": {
+        "Plataforma": "Slack (workspace pessoal)",
+        "Fuso": "-03:00"
+      }
+    },
+    {
+      "id": "browser-08", "tipo": "file", "icon": "🌐",
+      "nome": "historico_bruno.json", "resumo": "Histórico do navegador — Bruno",
+      "conteudo": "[\n  {\"ts\":\"2026-10-02T20:12:00-03:00\",\"url\":\"google.com/search?q=como+ganhar+dinheiro+rapido\"},\n  {\"ts\":\"2026-10-02T20:15:00-03:00\",\"url\":\"youtube.com/watch?v=...\"},\n  {\"ts\":\"2026-10-02T22:01:00-03:00\",\"url\":\"instagram.com/...\"}\n]",
+      "metadados": {
+        "Usuário": "bruno.costa@aurora.lab",
+        "Período": "02/10/2026 20:00–22:00"
+      }
+    }
+  ],
+  "gabarito": {
+    "culpado": "ana",
+    "chave": ["log-auth-01", "log-vpn-04", "file-usb-03", "hash-export-06", "email-02", "forum-post-05"],
+    "armadilhas": ["browser-08", "log-badge-09"],
+    "narrativa": "Ana acessou a VPN às 23:13 (local), logou no servidor às 23:14, montou um pendrive KINGSTON às 23:15 e exportou o blueprint_v3 às 23:47 — três minutos antes de enviar um e-mail a Carla dizendo que \"ia dormir\". Às 00:15 postou o hash do arquivo no fórum.\n\nO detalhe que fecha o caso é o fuso horário: os logs do servidor estão em UTC, e o e-mail de Ana em -03:00. Lido em UTC, o e-mail é 02:50 — três minutos após a exportação. Lido cru em 23:50, parece inofensivo. O hash exportado e o hash anunciado no fórum são idênticos. Carla estava fora do prédio desde 18:30; Bruno não tem permissão de acesso ao arquivo."
+  }
+}

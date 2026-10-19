@@ -6,7 +6,7 @@ Este projeto foi desenvolvido como forma de transformar conceitos técnicos de a
 
 ## 🎮 Jogue Agora
 Você pode jogar o simulador diretamente no seu navegador através do link abaixo (sem precisar instalar nada):
-👉 **[JOGAR CASO ZERO](https://SEU-USUARIO.github.io/caso-zero/)**
+👉 **[JOGAR CASO ZERO]([https://SEU-USUARIO.github.io/caso-zero/](https://github.com/Maziero-code/caso-zero)**
 
 ## ✨ Funcionalidades
 - **Interface de Terminal:** Estética hacker/cyberpunk com animações de digitação e sons sintetizados.

@@ -226,3 +226,67 @@ input[type=range] { width: 100%; accent-color: var(--accent); }
 .result-actions button:hover { border-color: var(--accent); color: var(--accent); }
 .result-actions button.primary { background: var(--accent); color: #001018; border: none; }
 .result-actions button.primary:hover { box-shadow: 0 0 20px rgba(0,212,255,0.4); }
+
+/* ============================================================
+   RESPONSIVIDADE (CELULAR E TABLET)
+============================================================ */
+@media (max-width: 1000px) {
+  .layout {
+    grid-template-columns: 1fr; /* Muda de 3 colunas para 1 coluna */
+    height: auto;
+    padding: 10px;
+    gap: 10px;
+  }
+
+  .panel {
+    max-height: 450px; /* Limita a altura para não ficar um rolo infinito */
+  }
+
+  #viewer-content {
+    max-height: 500px;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Ajustes no cabeçalho */
+  .topbar {
+    flex-direction: column;
+    height: auto;
+    padding: 12px;
+    gap: 12px;
+    text-align: center;
+  }
+  
+  .brand { justify-content: center; }
+  .stats { flex-wrap: wrap; justify-content: center; gap: 12px; }
+
+  /* Ajustes no Briefing Inicial */
+  .intro-card { padding: 24px; }
+  .intro-card h1 { font-size: 26px; }
+  .briefing { padding: 12px 16px; font-size: 12.5px; }
+  .btn-primary { padding: 16px; font-size: 14px; }
+
+  /* Ajustes no Visualizador */
+  .viewer-header h2 { font-size: 16px; }
+  .terminal-text { font-size: 11px; padding: 12px; }
+  .viewer-meta { grid-template-columns: 100px 1fr; font-size: 11px; }
+
+  /* Ajustes na tela de resultado */
+  #screen-result.active { padding: 20px 10px; }
+  .result-card { padding: 20px; }
+  .result-score { font-size: 56px; }
+  .result-rank-name { font-size: 16px; }
+  .bd-item { font-size: 11px; padding: 10px; }
+  .result-actions { flex-direction: column; gap: 10px; }
+}
+
+@media (max-width: 480px) {
+  /* Ajustes finos para celulares menores */
+  .intro-meta { flex-direction: column; gap: 4px; text-align: center; }
+  .intro-meta span:nth-child(even) { display: none; } /* Esconde as barras | */
+  .stats { font-size: 11px; }
+  .tz-container { flex-direction: column; }
+  .tz-container input { width: 100%; text-align: center; }
+  .tz-container button { width: 100%; padding: 10px; }
+  #tz-output { margin: 8px 0 0 0; text-align: center; font-size: 16px; }
+}

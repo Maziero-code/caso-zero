@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Caso Zero — Simulador de Investigação Digital</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</head>
+<body>
+
+<!-- TELA DE BOOT (Inicialização) -->
+<div id="boot-screen" style="display: none;">
+  <div id="boot-text"></div>
+</div>
+
+<!-- ============ INTRO ============ -->
+<section id="screen-intro" class="screen active">
+  <div class="intro-card">
+    <div class="intro-badge">CASO ZERO</div>
+    <h1>O vazamento da<br><span>Aurora Labs</span></h1>
+    <p class="intro-sub">Simulador de investigação digital</p>
+
+    <div class="briefing">
+      <p><strong>Briefing:</strong> Na madrugada de 03/10/2026, o blueprint confidencial de um novo produto da Aurora Labs apareceu à venda em um fórum clandestino. A empresa acionou o time de resposta a incidentes.</p>
+      <p>Você tem acesso ao cofre de evidências coletado pelo SOC: logs de autenticação, VPN, USB, e-mails, catraca e um post capturado no fórum.</p>
+      <p><strong>Objetivo:</strong> identificar quem vazou o arquivo — e <em>provar</em> cruzando as pistas.</p>
+    </div>
+
+    <div class="intro-meta">
+      <span>~10 min</span>
+      <span>|</span>
+      <span>3 suspeitos</span>
+      <span>|</span>
+      <span>11 evidências</span>
+    </div>
+
+    <button class="btn-primary" id="start-btn">> INICIAR INVESTIGAÇÃO</button>
+    <p class="intro-hint" id="load-error" style="display:none;color:#ff4757;"></p>
+    <p class="intro-hint">Dica: preste atenção nos fusos horários dos logs.</p>
+  </div>
+</section>
+
+<!-- ============ INVESTIGATION ============ -->
+<section id="screen-investigation" class="screen">
+  <header class="topbar">
+    <div class="brand"><span class="dot"></span> SYS.ROOT // CASO ZERO</div>
+    <div class="case-title" id="case-title">Caso 001</div>
+    <div class="stats">
+      <span>Tempo: <strong id="timer-display" style="color: var(--yellow);">15:00</strong></span>
+      <span>Vistos: <strong id="stat-viewed">0</strong>/<span id="stat-total">0</span></span>
+      <span>Marcados: <strong id="stat-marked">0</strong></span>
+    </div>
+  </header>
+
+  <main class="layout">
+    <aside class="panel">
+      <h2>> BANCO_DE_DADOS</h2>
+      <ul id="evidence-list"></ul>
+    </aside>
+
+    <section class="panel">
+      <div id="viewer-empty">← Selecione uma evidência para analisar</div>
+      <div id="viewer-content" style="display:none"></div>
+    </section>
+
+    <aside class="panel">
+      <h2>> TERMINAL_DE_ANALISE</h2>
+      <div class="notebook-body">
+        <div class="nb-section">
+          <h3>Suspeitos</h3>
+          <div id="suspects-list"></div>
+        </div>
+        <div class="nb-section">
+          <h3>Evidências marcadas</h3>
+          <ul id="marked-list"></ul>
+          <div id="marked-empty">Nenhuma ainda.</div>
+        </div>
+
+        <div class="nb-section">
+          <h3>> CONVERSOR_UTC</h3>
+          <div class="tz-container">
+            <input type="text" id="tz-input" placeholder="Ex: 02:14Z" maxlength="6">
+            <button id="tz-btn">CONVERTER</button>
+            <span id="tz-output">--:--</span>
+          </div>
+          <p class="conf-hint">Logs em UTC. Converta para o local (-03:00) para cruzar com e-mails.</p>
+        </div>
+
+        <div class="nb-section">
+          <h3>Calibração de confiança</h3>
+          <div class="conf-label"><span>Quão certo você está?</span><span id="conf-value">50%</span></div>
+          <input type="range" id="conf-slider" min="0" max="100" value="50">
+        </div>
+        <button id="conclude-btn" disabled>CONCLUIR INVESTIGAÇÃO</button>
+      </div>
+    </aside>
+  </main>
+</section>
+
+<!-- ============ RESULT ============ -->
+<section id="screen-result" class="screen">
+  <div class="result-card" id="result-card"></div>
+</section>
+
+<script src="js/scoring.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

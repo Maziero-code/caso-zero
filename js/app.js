@@ -61,7 +61,6 @@ function playBootSound() {
   if (!audioCtx) return;
   const now = audioCtx.currentTime;
 
-  // 1. Zumbido grave subindo
   const osc1 = audioCtx.createOscillator();
   const gain1 = audioCtx.createGain();
   osc1.type = 'sawtooth';
@@ -73,7 +72,6 @@ function playBootSound() {
   osc1.connect(gain1); gain1.connect(audioCtx.destination);
   osc1.start(now); osc1.stop(now + 2);
 
-  // 2. Sweep agudo
   const osc2 = audioCtx.createOscillator();
   const gain2 = audioCtx.createGain();
   osc2.type = 'square';
@@ -85,7 +83,6 @@ function playBootSound() {
   osc2.connect(gain2); gain2.connect(audioCtx.destination);
   osc2.start(now); osc2.stop(now + 2);
 
-  // 3. Acorde final (Sistema Pronto)
   const osc3 = audioCtx.createOscillator();
   const gain3 = audioCtx.createGain();
   osc3.type = 'triangle';
@@ -227,6 +224,14 @@ function selectEvidence(id) {
   renderEvidenceList();
   renderViewer(true);
   updateStats();
+
+  // NOVO: Auto-scroll para o visualizador no celular
+  if (window.innerWidth <= 1000) {
+    setTimeout(() => {
+      const viewerPanel = document.getElementById("viewer-content");
+      viewerPanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 100);
+  }
 }
 
 function renderViewer(animate = false) {

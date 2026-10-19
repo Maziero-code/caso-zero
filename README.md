@@ -6,7 +6,7 @@ Este projeto foi desenvolvido como forma de transformar conceitos técnicos de a
 
 ## 🎮 Jogue Agora
 Você pode jogar o simulador diretamente no seu navegador através do link abaixo (sem precisar instalar nada):
-👉 **[JOGAR CASO ZERO]([https://SEU-USUARIO.github.io/caso-zero/](https://github.com/Maziero-code/caso-zero)**
+👉 **[JOGAR CASO ZERO](https://github.com/Maziero-code/caso-zero)**
 
 ## ✨ Funcionalidades
 - **Interface de Terminal:** Estética hacker/cyberpunk com animações de digitação e sons sintetizados.
@@ -28,4 +28,4 @@ Como o projeto consome um arquivo `.json` via `fetch`, ele precisa ser rodado em
 
 1. Clone o repositório:
    ```bash
-   git clone https://github.com/SEU-USUARIO/caso-zero.git
+   git clone https://github.com/SEU-USUARIO/caso-zero.git](https://github.com/Maziero-code/caso-zero/edit/main/README.md
